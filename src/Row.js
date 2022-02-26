@@ -2,13 +2,12 @@ import movieTrailer from "movie-trailer";
 import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import axios from "./axios";
-import './Row.css';
-import PropTypes from 'prop-types';
+import "./Row.css";
+import PropTypes from "prop-types";
 
 const base_url = "https://image.tmdb.org/t/p/original";
 
 function Row({ title, fetchUrl, isLargeRow }) {
-
     const [movies, setMovies] = useState([]);
     const [trailerUrl, settrailerUrl] = useState("");
 
@@ -30,14 +29,14 @@ function Row({ title, fetchUrl, isLargeRow }) {
         }
     };
 
-    console.table(movies);
+    console.log(movies);
 
     const handleClick = (movie) => {
         movieTrailer(movie.name || "").then((url) => {
-            const youTubeUrl = new URLSearchParams(new URL(url).search)
-            settrailerUrl(youTubeUrl.get('v'));
+            const youTubeUrl = new URLSearchParams(new URL(url).search);
+            settrailerUrl(youTubeUrl.get("v"));
         });
-    }
+    };
 
     return (
         <div className="row">
@@ -57,19 +56,19 @@ function Row({ title, fetchUrl, isLargeRow }) {
             </div>
             <YouTube opts={opts} videoId={trailerUrl} />
         </div>
-    )
+    );
 }
 
 Row.propTypes = {
     title: PropTypes.string.isRequired
-}
+};
 
 Row.propTypes = {
     fetchUrl: PropTypes.string.isRequired
-}
+};
 
 Row.propTypes = {
     isLargeRow: PropTypes.bool.isRequired
-}
+};
 
 export default Row;

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from './axios';
+import React, { useEffect, useState } from "react";
+import axios from "./axios";
 import requests from "./requests";
-import './Banner.css';
+import "./Banner.css";
 import { IconButton } from "@material-ui/core";
 
 function Banner() {
@@ -44,7 +44,7 @@ function Banner() {
         <div className = "banner__fadeBottom"/> 
         </header>
       
-    )
+    );
 }
 
-export default Banner
+export default Banner;
