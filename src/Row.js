@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import axios from "./axios";
 import './Row.css';
+import PropTypes from 'prop-types';
 
-const base_url= "https://image.tmdb.org/t/p/original";
+const base_url = "https://image.tmdb.org/t/p/original";
 
-function Row({title, fetchUrl, isLargeRow}) {
+function Row({ title, fetchUrl, isLargeRow }) {
 
     const [movies, setMovies] = useState([]);
     const [trailerUrl, settrailerUrl] = useState("");
@@ -32,31 +33,43 @@ function Row({title, fetchUrl, isLargeRow}) {
     console.table(movies);
 
     const handleClick = (movie) => {
-        movieTrailer(movie.name|| "").then((url) => {
-        const youTubeUrl = new URLSearchParams(new URL(url).search)
-        settrailerUrl(youTubeUrl.get('v'));
-        });        
+        movieTrailer(movie.name || "").then((url) => {
+            const youTubeUrl = new URLSearchParams(new URL(url).search)
+            settrailerUrl(youTubeUrl.get('v'));
+        });
     }
 
-    return(
+    return (
         <div className="row">
             <h2>{title}</h2>
             <div className="row_posters">
                 {
                     movies.map((movie) => (
-                        <img 
-                            key={movie.id}    
-                            onClick={() => handleClick(movie)}            
-                            className= {`row_poster ${isLargeRow && "row__posterLarge"}`}
-                            src={`${base_url}${isLargeRow? movie.poster_path: movie.backdrop_path}`}
+                        <img
+                            key={movie.id}
+                            onClick={() => handleClick(movie)}
+                            className={`row_poster ${isLargeRow && "row__posterLarge"}`}
+                            src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
                             alt={movie.name}
-                        />                      
+                        />
                     ))
                 }
             </div>
-            <YouTube opts={opts} videoId={trailerUrl}/>
+            <YouTube opts={opts} videoId={trailerUrl} />
         </div>
     )
+}
+
+Row.propTypes = {
+    title: PropTypes.string.isRequired
+}
+
+Row.propTypes = {
+    fetchUrl: PropTypes.string.isRequired
+}
+
+Row.propTypes = {
+    isLargeRow: PropTypes.bool.isRequired
 }
 
 export default Row;
