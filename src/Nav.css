@@ -16,7 +16,7 @@
 }
   
 .nav__logo {
-    font-weight: 500px;
+  font-weight: 500px;
   position: fixed;
   left: 20px;
   width: 80px;
@@ -24,8 +24,8 @@
 }
   
 .nav__avatar {
-    position: fixed;
-    right: 20px;
+  position: fixed;
+  right: 20px;
   width: 30px;
   object-fit: contain;
 }
